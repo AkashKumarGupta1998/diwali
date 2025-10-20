@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwali Blessings Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .diwali-title {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            color: #ffd700;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #f8c471;
+            margin-bottom: 20px;
+        }
+        
+        .personal-greeting {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .deities-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .deity-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .deity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .deity-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ffd700;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .deity-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .deity-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e8e8e8;
+        }
+        
+        .greeting-section {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .greeting {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #f0f0f0;
+        }
+        
+        .diya-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .diya {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ff8c00, #ff4500);
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            box-shadow: 0 0 20px #ff8c00, 0 0 40px #ff4500;
+            animation: flicker 3s infinite alternate;
+        }
+        
+        .diya::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 40px;
+            height: 30px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffd700;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+            animation: explode 3s forwards;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #f8c471;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .diwali-title {
+                font-size: 2.5rem;
+            }
+            
+            .deity-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .greeting {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="diwali-title">Happy Diwali</h1>
+            <p class="subtitle">May the divine light of Diwali spread into your life, Peace, Prosperity, and Happiness</p>
+            <div class="personal-greeting">Wishing you a blessed Diwali, [Your Name]!</div>
+        </header>
+        
+        <div class="deities-container">
+            <div class="deity-card">
+                <img src="https://i.imgur.com/5XJ3z7E.png" alt="Goddess Lakshmi" class="deity-image">
+                <h2 class="deity-name">Goddess Lakshmi</h2>
+                <p class="deity-description">Goddess of wealth, fortune, and prosperity. May she bless your home with abundance and financial stability.</p>
+            </div>
+            
+            <div class="deity-card">
+                <img src="https://i.imgur.com/8Q9qZ0L.png" alt="Lord Ganesh" class="deity-image">
+                <h2 class="deity-name">Lord Ganesh</h2>
+                <p class="deity-description">Remover of obstacles and god of beginnings. May he clear all hurdles from your path to success.</p>
+            </div>
+            
+            <div class="deity-card">
+                <img src="https://i.imgur.com/3Q2Qz2R.png" alt="Goddess Saraswati" class="deity-image">
+                <h2 class="deity-name">Goddess Saraswati</h2>
+                <p class="deity-description">Goddess of knowledge, music, arts, and wisdom. May she enlighten your mind with divine knowledge.</p>
+            </div>
+        </div>
+        
+        <div class="greeting-section">
+            <h2 class="greeting">Wishing You a Joyous Diwali!</h2>
+            <p class="message">On this auspicious occasion of Diwali, may the divine blessings of Goddess Lakshmi, Lord Ganesh, and Goddess Saraswati bring you wealth, success, and wisdom. May your life be filled with happiness, prosperity, and the bright light of millions of diyas.</p>
+        </div>
+        
+        <div class="diya-container">
+            <div class="diya"></div>
+            <div class="diya"></div>
+            <div class="diya"></div>
+            <div class="diya"></div>
+            <div class="diya"></div>
+        </div>
+        
+        <footer>
+            <p>May the festival of lights brighten your life with joy and prosperity. Happy Diwali!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create fireworks effect
+        function createFirework() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            
+            // Random position
+            const left = Math.random() * 100;
+            firework.style.left = `${left}vw`;
+            
+            // Random color
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            firework.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`;
+            
+            // Random size
+            const size = Math.random() * 6 + 3;
+            firework.style.width = `${size}px`;
+            firework.style.height = `${size}px`;
+            
+            fireworksContainer.appendChild(firework);
+            
+            // Remove firework after animation completes
+            setTimeout(() => {
+                firework.remove();
+            }, 3000);
+        }
+        
+        // Create multiple fireworks
+        setInterval(createFirework, 300);
+        
+        // Add some initial fireworks
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createFirework, i * 100);
+        }
+        
+        // Update the personalized greeting with user's name
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace [Your Name] with actual name
+            const name = prompt("Please enter your name for the Diwali greeting:", "Your Name");
+            if (name && name.trim() !== "") {
+                document.querySelector('.personal-greeting').textContent = `Wishing you a blessed Diwali, ${name.trim()}!`;
+            }
+        });
+    </script>
+</body>
+</html>
